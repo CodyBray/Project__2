@@ -11,16 +11,41 @@ import sys
 import Geometry_Operations as geom
 
 # Determine the unknown bars next to this node
+
+
 def UnknownBars(node):
-    return
+    for node in node:
+        unknown_bars = [
+            bar for bar in node.bars
+            if not bar.is_computed
+            ]
+    return len(unknown_bars(node))
+
 
 # Determine if a node if "viable" or not
-def NodeIsViable(node):
-    return
+def NodeIsViable(node): 
+   if len(unknown_bars)<=2:
+      return rue
+   else:
+      return false
+   for node in node:
+       unknown_bars = [
+           bar for bar in node.bars
+           if not bar.is_computed
+           ]
+       if len(unknown_bars) <= 2 :
+        return True
+   else:
+        return False
     
 # Compute unknown force in bar due to sum of the
 # forces in the x direction
 def SumOfForcesInLocalX(node, local_x_bar):
+    local_x_
+    totalsumforce=0
+    local_x_bar = unknown_bars[0]
+    global_force_vec = (node.GetNetXFroce(),node.GetNetYForce())
+    
     return
 
 # Compute unknown force in bar due to sum of the 

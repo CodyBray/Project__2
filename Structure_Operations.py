@@ -27,7 +27,7 @@ def StaticallyDeterminate(nodes,bars):
     
     # Compute if b + r = 2j (Equation 3-1 of the textbook)
     if(n_bars + n_reactions < 2*n_nodes):
-        sys.exit("The truss is unstable")
+        sys.exit("The truss is unstable; did you input all of the reaction constraints correctly?")
     elif(n_bars + n_reactions > 2*n_nodes):
         sys.exit("The truss is statically indeterminate, and cannot be resolved using method of joints")
     else:
@@ -53,9 +53,41 @@ def ComputeReactions(nodes):
     
     # Continue from here
     # Sum of moments about the pin
-
+    [pin_x, pin_y] = pin_node.location
+    [roller_x, roller_y] = roller_node.location
+    
+    total_moment = sum(n.yforce_external * (n.location[0] - pin_x)
+    - n.xforce_external * (n.location[1] - pin_y) for n in nodes)
+    
     # sum of forces in y direction
-
+    
+    sum_Fx= sum(n.xforce_external for n in nodes)
     # sum of forces in x direction
+    sum_Fy=sum(n.yforce_external for n in nodes)
     
+
+
+    By= sum_Fy 
+    Bx= sum_Fx 
+    #solve roller reaction
+    if roller_node.constraint == "roller_no_ydisp":
+        # Vertical roller reaction
+        By = -total_moment / (roller_x - pin_x)
+        roller_node.AddReactionYForce(By)
+        Bx = 0.0
+    else:
+        Bx = total_moment / (roller_y - pin_y)
+        roller_node.AddReactionXForce(Bx)
+        By = 0.0
+
+    # Solve pin reactions using force equilibrium
+    Ax = -sum_Fx - Bx
+    Ay = -sum_Fy - By
+
+    # Store reactions
     
+    pin_node.AddReactionXForce(Ax)
+    pin_node.AddReactionYForce(Ay)
+    
+   
+    # Structure_Operation(example_3_3)
