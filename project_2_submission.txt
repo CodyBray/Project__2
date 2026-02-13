@@ -81,8 +81,8 @@ Q79::
 Q80::
 Q81::
 Q82::
-Q83::
-Q84::
-Q85::
-Q86::
-Q87::
+Q83::N
+Q84::N
+Q85::N
+Q86::The Gabled How Eight roof truss has the most minimal loads for several members. However its maximally loaded members 31.570 at B0 and B15 have a higher load than the Modified Fan Six panels highest loaded members 29.249 at b0 and b3. It also has lower reaction forces at its nodes. It has the smallest amount of material as well. 
+Q87::The truss I find to be the best is the modified Fan Six Panels truss. It has the lowest loads out of the other options and it distributes the load very evenly. This is the best structural truss out of the ones we have tested  
