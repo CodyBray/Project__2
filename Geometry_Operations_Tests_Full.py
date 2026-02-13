@@ -13,7 +13,7 @@ import Geometry_Operations as geom
 import unittest
 
 class TestGeometryOperationsPart1(unittest.TestCase):
-
+    
     def test_BarNodeToVector(self):
         nodes,bars = Main_for_Testing.MethodOfJoints("Example_3_2.csv")
         
